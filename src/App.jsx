@@ -26,7 +26,7 @@ function App() {
         <button className='TodoBtn' onClick={ addTodoHandaler}>add</button>
       </div>
       </div>
-      <List />
+      <List props={input}/>
     </>
   )
 }
