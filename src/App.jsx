@@ -11,17 +11,17 @@ function App() {
   const dispatch =useDispatch()
 
   const addTodoHandaler = ()=> {
-    // e.preventDefault()
     dispatch(addTodo(input))
     
   }
 
   return (
     <>
-      <div className='container'>
+      <div className='container' style={{display:"grid",gap:"14px", alignItems:"center", justifyContent:"center",padding:"10px"}}>
      
       <h1> React ToDO using Redux </h1>
       <div className='Todotask'>
+   
         <input className='TodoText' type="text"  value={input}   placeholder="Please enter the text " onChange={(e)=> setInput(e.target.value)} />
         <button className='TodoBtn' onClick={ addTodoHandaler}>add</button>
       </div>
