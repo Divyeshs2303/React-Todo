@@ -21,15 +21,7 @@ const TodoSlice = createSlice({
       state.todos = state.todos.filter((todo) => todo.id !== action.payload);
     },
     updateTodo: (state, action) => {
-      todos.map((todo) => {
-        if (todo.id == action.payload) {
-          return action.payload
-        }
-        else {
-          return state
-        }
-      })
-state.todos= updateTodo
+     
     },
   },
 })
