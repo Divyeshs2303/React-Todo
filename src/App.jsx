@@ -1,33 +1,55 @@
-import { useState } from 'react'
-import './App.css'
-import { useDispatch } from 'react-redux'
-import { addTodo } from './Feature/TodoSlice'
-import List from "./List"
+// src/App.js
 
-function App() {
-  const [input, setInput] = useState('')
-  console.log("🚀 ~ App ~ input:", input)
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addTodo } from "./Feature/TodoSlice";
+import List from "./List";
 
-  const dispatch = useDispatch()
+const App = () => {
+  const [todoText, setTodoText] = useState("");
+  const dispatch = useDispatch();
 
-  const addTodoHandaler = () => {
-    dispatch(addTodo(input))
-
-  }
+  const handleAddTodo = () => {
+    if (todoText) {
+      dispatch(addTodo(todoText));
+      setTodoText(""); // clear input after adding
+    }
+  };
 
   return (
-    <>
-      <div className='container' style={{ display: "grid", gap: "14px", alignItems: "center", justifyContent: "center", padding: "10px" }}>
+    <div style={{ padding: "20px", textAlign: "center" }}>
+      <h1>Todo App</h1>
+      <input
+        type="text"
+        value={todoText}
+        onChange={(e) => setTodoText(e.target.value)}
+        placeholder="Enter todo"
+        style={{
+          padding: "10px",
+          fontSize: "14px",
+          width: "300px",
+          marginRight: "10px",
+          borderRadius: "4px",
+        }}
+      />
+      <button
+        onClick={handleAddTodo}
+        style={{
+          backgroundColor: "#4CAF50",
+          color: "white",
+          border: "none",
+          padding: "10px 20px",
+          borderRadius: "4px",
+          cursor: "pointer",
+          fontSize: "14px",
+        }}
+      >
+        Add Todo
+      </button>
 
-        <h1> React ToDO using Redux </h1>
-        <div className='Todotask'>
-          <input className='TodoText' type="text" value={input} placeholder="Please enter the text " onChange={(e) => setInput(e.target.value)} />
-          <button className='TodoBtn' onClick={addTodoHandaler}>add</button>
-        </div>
-      </div>
-      <List props={input} />
-    </>
-  )
-}
+      <List />
+    </div>
+  );
+};
 
-export default App
+export default App;
